@@ -2,23 +2,23 @@ from pydantic import BaseModel
 
 
 class Users_Model(BaseModel):
+    user_Id : str
     user_Fname : str
     user_Lname : str
     user_Email : str
     realestate_Ids : list | None = []
     hashed_password : str
 
-class Ammenities(BaseModel):
-    rooms : str
-    bathrooms : str
-    balconys : str
    
 class Realestate_Model(BaseModel):
+    realestate_Id : str
     realestate_name : str
-    realesatate_location : str
-    realesatate_address : str
-    realesatate_price : int
-    realesatate_ammenities : Ammenities
-    realesatate_images_ids : list | None = []
+    realestate_location : str
+    realestate_address : str
+    realestate_area : int
+    rooms : int
+    bathrooms : int
+    balconys : int
+    realestate_images_ids : list | None = []
 
  

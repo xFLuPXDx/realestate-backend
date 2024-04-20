@@ -135,13 +135,19 @@ async def signUp( user : Users_Model):
     if user_collection.find_one({"user_Email" : res["user_Email"]}):
         raise credentials_exception
    
+    while True:
+            code = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(6))
+            if not(user_collection.find_one({"realestate_Id" : code})):
+                res["user_Id"] = code
+                break
 
     user_collection.insert_one(
         {
+            "user_Id" :  res["user_Id"],
             "user_Fname" : res["user_Fname"],
             "user_Lname" : res["user_Lname"],
             "user_Email" : res["user_Email"],
-            "realestate_ids" : res["realestate_ids"],
+            "realestate_Ids" : res["realestate_Ids"],
             "hashed_password" : get_password_hash(res["hashed_password"]),
         }
     )
