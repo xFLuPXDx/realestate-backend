@@ -15,10 +15,10 @@ class Realestate_Model(BaseModel):
     realestate_name : str
     realestate_location : str
     realestate_address : str
-    realestate_area : int
-    rooms : int
-    bathrooms : int
-    balconys : int
+    realestate_area : str
+    rooms : str
+    bathrooms : str
+    balconys : str
     realestate_images_ids : list | None = []
 
  

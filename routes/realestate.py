@@ -24,10 +24,21 @@ async def create_realestate(realestate:Realestate_Model,current_user: Annotated[
     user_collection.find_one_and_update({ 'user_Email' : current_user.user_Email} , {"$push" : {"realestate_Ids" : realestate_new["realestate_Id"]}})
 
     return realestate_new["realestate_Id"]
+    
 
 
 
-@realestateRouter.post('/realestate/fetch')
+@realestateRouter.get('/realestate/fetch')
 async def create_realestate(current_user: Annotated[TokenData, Depends(get_current_active_user)]):  
     
-    return get_realestates(realestate_collection.find())
+    real =  get_realestates(realestate_collection.find())
+    
+    reallist = list()
+    dic = dict()
+
+    for i in real :
+        reallist.append(i)             
+    
+    dic.update({"count" : len(reallist) , "result" : reallist})
+        
+    return dic
